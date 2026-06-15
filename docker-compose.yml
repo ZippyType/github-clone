@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  github-clone:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - GIT_REPOS_DIR=/app/repos
+      - DB_PATH=/app/data/github.db
+      - JWT_SECRET=your_jwt_secret_key
+    volumes:
+      - ./repos:/app/repos
+      - ./data:/app/data
+    command: npm run dev
